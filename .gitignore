@@ -1,0 +1,6 @@
+__pycache__/
+dist/
+artifacts/
+.venv/
+node_modules/
+*.log

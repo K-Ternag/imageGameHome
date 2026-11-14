@@ -1,0 +1,44 @@
+{
+  "checkedOn": "2026-11-14",
+  "staticChecks": {
+    "passed": true,
+    "htmlPages": 13,
+    "bilingualContentPages": 12,
+    "referencesChecked": 497,
+    "originalImageHashesVerified": 16,
+    "javascriptSyntax": "passed",
+    "pythonSyntax": "passed",
+    "configurationAndDraftPolicyChecks": "passed",
+    "httpPreview": "HTTP 200; served HTML matched generated source",
+    "deploymentDirectoryBoundary": "passed"
+  },
+  "browserChecks": {
+    "passed": false,
+    "completedLayoutChecks": 0,
+    "reason": "Playwright could not start: Windows WinError 5 while creating driver communication pipes. Layout and interactions remain unverified in a browser.",
+    "report": "artifacts/browser-verification.json",
+    "rerun": "python scripts/browser_check.py --base-url http://127.0.0.1:3260/"
+  },
+  "publication": {
+    "deployed": false,
+    "repositoryUrl": "https://github.com/K-Ternag/imageGameHome",
+    "sourceUploaded": false,
+    "uploadBlockers": ["Local .git/config and index.lock writes denied", "GitHub connector create_file returned 403 Resource not accessible by integration"],
+    "localPublishScript": "push-home.ps1",
+    "preparedFor": "GitHub Pages",
+    "output": "dist",
+    "archive": "artifacts/familyGameHome-pages.zip"
+  },
+  "releaseInformationPending": [
+    "policyEffectiveDate",
+    "supportRetention.ko/en",
+    "supportResponseTime.ko/en",
+    "policiesApproved",
+    "productionApplicationId"
+  ],
+  "playStoreUrl": "Not yet available, as confirmed by the user. No install URL was invented.",
+  "confirmedOperator": "K-Terang",
+  "confirmedSupportEmail": "greatryuhg@gmail.com",
+  "referenceIdentityCheck": "Both the local and public foutFoldHome/dayInFourHome site-config.js had blank developerName and supportEmail.",
+  "englishImageDisclosure": "User-supplied English promotional adaptations are used; they are not represented as running English-app screenshots."
+}

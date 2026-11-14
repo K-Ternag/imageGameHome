@@ -1,0 +1,50 @@
+[
+  {
+    "file": "01-home.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "8c8400c572c6ceaa6c64f8d224f55d1723074a2a6718875d72edd04a3e3b36c3"
+  },
+  {
+    "file": "02-games.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "3f8ff60fda3992bc9f4deda49cd08246a807eabd330a76639c4d38305c359e73"
+  },
+  {
+    "file": "03-photo-puzzle.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "419989c9c885ea75d6173742d2d7bbb562dcb824af20e5073530828c55aefee3"
+  },
+  {
+    "file": "04-memory-photo.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "ef2e1b2eb4b576b4c34252e9f40b267d237cd478db4576a0c51b83100cbb6433"
+  },
+  {
+    "file": "05-memory-choices.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "901a20b7ee0d539ceef2f522478a0edb69f868f53fd75c426050894a3e63247c"
+  },
+  {
+    "file": "06-photo-complete.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "f12a99435662f16b798ecd012fde48d1d8bd38ae9ef55405481e3029ed603cad"
+  },
+  {
+    "file": "07-together-setup.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "190513cfbfd319fea151f4cfe49ba3f4243d629c3403cd7951e62430228d23af"
+  },
+  {
+    "file": "08-together-result.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "48fcc725d16704b4424612b4493ffba0f985643dfc0a7b2e90dff1972fef7794"
+  }
+]
