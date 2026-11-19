@@ -9,9 +9,11 @@ from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 from build_site import Site, validate_config, missing_policy_fields
+from content import SCREENS
 
 parser=argparse.ArgumentParser()
 parser.add_argument('--base-url',default='http://127.0.0.1:3260/')
+parser.add_argument('--channel', default=None, help='Optional installed Chromium channel, e.g. msedge.')
 args=parser.parse_args()
 BASE=args.base_url.rstrip('/')+'/'
 ART=ROOT/'artifacts'
@@ -25,7 +27,7 @@ def assert_true(condition, message):
 
 try:
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True)
+        browser=p.chromium.launch(headless=True, channel=args.channel)
         context=browser.new_context(reduced_motion='reduce',device_scale_factor=1)
         page=context.new_page()
         page.on('pageerror',lambda error:report['errors'].append(str(error)))
@@ -43,6 +45,10 @@ try:
                     assert_true(page.locator('html').get_attribute('lang')==lang,'Incorrect document language')
                     report['layout_checks'].append(f'{filename} {width}px')
                     if width in [1440,390] and name=='index':
+                        for img in page.locator('main img').all():
+                            img.scroll_into_view_if_needed()
+                            img.evaluate('(img) => img.decode()')
+                        page.evaluate('window.scrollTo(0, 0)')
                         page.screenshot(path=str(ART/f'home-{lang}-{width}.png'),full_page=True)
                     if width==1440 and name=='privacy' and lang=='ko':
                         page.screenshot(path=str(ART/'privacy-ko-desktop.png'),full_page=True)
@@ -55,22 +61,23 @@ try:
                 image.evaluate('(img) => img.decode()')
                 assert_true(f'assets/{lang}/' in image.get_attribute('src'),'Wrong image language')
             page.locator('[data-filter="together"]').click()
-            assert_true(page.locator('.gallery-card:visible').count()==2,'Gallery filter failed')
+            together_count=sum(screen[1]=='together' for screen in SCREENS)
+            assert_true(page.locator('.gallery-card:visible').count()==together_count,'Gallery filter failed')
             first=page.locator('.gallery-card:visible [data-lightbox]').first
             first.click()
             assert_true(page.locator('#lightbox').is_visible(),'Lightbox did not open')
-            assert_true(page.locator('#image-position').inner_text()=='1 / 2','Incorrect filtered image list')
+            assert_true(page.locator('#image-position').inner_text()==f'1 / {together_count}','Incorrect filtered image list')
             page.keyboard.press('ArrowRight')
-            assert_true(page.locator('#image-position').inner_text()=='2 / 2','Next image failed')
+            assert_true(page.locator('#image-position').inner_text()==f'2 / {together_count}','Next image failed')
             page.keyboard.press('ArrowLeft')
-            assert_true(page.locator('#image-position').inner_text()=='1 / 2','Previous image failed')
+            assert_true(page.locator('#image-position').inner_text()==f'1 / {together_count}','Previous image failed')
             page.keyboard.press('Escape')
             assert_true(not page.locator('#lightbox').is_visible(),'Escape failed')
             assert_true(first.evaluate('(node) => node === document.activeElement'),'Focus not restored')
             page.locator('.languages a[hreflang="'+('en' if lang=='ko' else 'ko')+'"]').click()
             assert_true('filter=together' in page.url,'Language link lost the selected filter')
-            assert_true(page.locator('.gallery-card:visible').count()==2,'Translated filter not preserved')
-            report['interactions'].append(f'{lang}: eight locale images, filter, lightbox, arrows, Escape, focus, language filter')
+            assert_true(page.locator('.gallery-card:visible').count()==together_count,'Translated filter not preserved')
+            report['interactions'].append(f'{lang}: {len(SCREENS)} actual captures, filter, lightbox, arrows, Escape, focus, language filter')
         page.goto(urljoin(BASE,'index.html#games'),wait_until='networkidle')
         page.locator('[data-filter="puzzle"]').click()
         assert_true(page.locator('.game-card:visible').count()==2,'Game category filter failed')
@@ -106,7 +113,7 @@ try:
         for lang in ['ko','en']:
             site=Site(lang,fixture)
             fixture_url=urljoin(BASE,'support'+('.html' if lang=='ko' else '.en.html'))+'?fixture=1'
-            page.route(fixture_url,lambda route,body=site.render('support'):route.fulfill(status=200,content_type='text/html',body=body))
+            page.route(fixture_url,lambda route, request, body=site.render('support'):route.fulfill(status=200,content_type='text/html',body=body))
             page.goto(fixture_url,wait_until='networkidle')
             assert_true(page.locator('#support-form button').is_enabled(),'Configured email still disabled')
             page.locator('#message').fill('문의 & details\nSecond line')

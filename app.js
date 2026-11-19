@@ -120,7 +120,7 @@ supportForm?.addEventListener('submit', event => {
   event.preventDefault();
   const form = event.currentTarget;
   if (!form.dataset.email || !form.reportValidity()) return;
-  const subject = say('[사진게임] ', '[Photo Games] ') + document.querySelector('#topic').value;
+  const subject = say('[리멤픽] ', '[RememPic] ') + document.querySelector('#topic').value;
   const body = document.querySelector('#message').value.trim();
   if (!body) return;
   const draft = `mailto:${form.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

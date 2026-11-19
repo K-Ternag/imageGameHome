@@ -4,10 +4,16 @@
   "siteUrl": "https://k-ternag.github.io/imageGameHome/",
   "playStoreUrl": "",
   "productionApplicationId": "",
-  "policyEffectiveDate": "",
+  "policyEffectiveDate": "2026-11-20",
   "policiesApproved": false,
-  "supportRetention": { "ko": "", "en": "" },
-  "supportResponseTime": { "ko": "", "en": "" },
-  "reviewedAppVersion": "0.8.0",
-  "sourceReviewedOn": "2026-11-14"
+  "supportRetention": {
+    "ko": "문의 처리 완료 후 30일 동안 보관합니다. 기간이 끝나거나 확인된 삭제 요청을 처리할 때 운영자가 문의 이메일과 첨부를 메일함·휴지통에서 영구 삭제하고 별도로 저장한 첨부 사본도 삭제합니다. 메일 제공자의 시스템 기록·백업은 해당 제공자의 정책을 따릅니다.",
+    "en": "Support messages are kept for 30 days after resolution. At the end of this period or when fulfilling a verified deletion request, the operator permanently deletes emails and attachments from the mailbox and trash, including separately saved attachment copies. Provider system records and backups follow the email provider’s policy."
+  },
+  "supportResponseTime": {
+    "ko": "접수 후 요청 내용을 확인하여 지체 없이 답변하며, 추가 확인이나 시간이 필요한 경우 사유와 예상 일정을 안내합니다.",
+    "en": "We review requests and respond without undue delay. If verification or more time is needed, we explain why and provide an expected timeline."
+  },
+  "reviewedAppVersion": "0.9.0",
+  "sourceReviewedOn": "2026-11-20"
 }

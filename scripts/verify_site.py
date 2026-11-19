@@ -2,11 +2,14 @@
 import argparse
 import hashlib
 import json
+import sys
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 PROJECT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT))
+from content import SCREENS
 
 
 class Document(HTMLParser):
@@ -14,11 +17,13 @@ class Document(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.path, self.ids, self.links, self.images = path, set(), [], []
         self.h1, self.lang, self.main = 0, None, 0
-        self.errors = []
+        self.errors, self.meta = [], {}
         self.feed(path.read_text(encoding='utf-8'))
 
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
+        if tag == 'meta':
+            self.meta[values.get('property', values.get('name', ''))] = values.get('content', '')
         if tag == 'html': self.lang = values.get('lang')
         if tag == 'h1': self.h1 += 1
         if tag == 'main': self.main += 1
@@ -48,7 +53,7 @@ def check(root):
         lang = 'en' if '.en.' in path.name else 'ko'
         if doc.lang != lang: errors.append(f'{path.name}: incorrect language')
         for img in doc.images:
-            if img.get('src','').startswith('assets/') and f'assets/{lang}/' not in img['src']:
+            if img.get('src','').startswith('assets/') and f'assets/{lang}/' not in img['src'] and img['src'] != 'assets/favicon-64.png':
                 errors.append(f'{path.name}: wrong locale image {img["src"]}')
         for link in doc.links:
             references += 1
@@ -67,15 +72,28 @@ def check(root):
                     errors.append(f'{path.name}: missing anchor {link}')
     for lang in ['ko','en']:
         entries=json.loads((root/'assets'/lang/'manifest.json').read_text(encoding='utf-8'))
-        if len(entries)!=8: errors.append(f'{lang}: expected eight original assets')
+        if {entry['file'] for entry in entries} != {screen[0]+'.png' for screen in SCREENS}:
+            errors.append(f'{lang}: screenshot manifest differs from gallery')
         for entry in entries:
             original=root/'assets'/lang/'originals'/entry['file']
             if hashlib.sha256(original.read_bytes()).hexdigest()!=entry['sha256']:
                 errors.append(f'Original was changed: {original}')
+            if entry.get('app_ui_language') != 'ko-KR':
+                errors.append(f'{lang}: incorrect actual capture language')
+    for path, doc in docs.items():
+        if path.name == '404.html': continue
+        lang = 'en' if '.en.' in path.name else 'ko'
+        for name in ['og:image', 'twitter:image']:
+            url = doc.meta.get(name, '')
+            if not url.startswith('https://') or not url.endswith(f'/assets/og-{lang}.png'):
+                errors.append(f'{path.name}: incorrect {name}')
+        content = path.read_text(encoding='utf-8')
+        for stale in ['Photo Games', '사진게임', 'translated promotional adaptations', '친구 도전', 'sunflower']:
+            if stale in content: errors.append(f'{path.name}: stale content: {stale}')
     if root!=PROJECT:
         unwanted=[item.name for item in root.iterdir() if item.name not in {'assets','styles.css','app.js','.nojekyll','robots.txt','sitemap.xml'} and item.suffix!='.html']
         if unwanted: errors.append('Development files in deployment: '+', '.join(unwanted))
-    return {'pages':len(docs),'local_and_external_references_checked':references,'original_images_verified':16,'errors':errors}
+    return {'pages':len(docs),'local_and_external_references_checked':references,'original_images_verified':len(SCREENS)*2,'errors':errors}
 
 
 if __name__=='__main__':

@@ -1,44 +1,67 @@
 {
-  "checkedOn": "2026-11-14",
+  "checkedOn": "2026-11-20",
   "staticChecks": {
     "passed": true,
-    "htmlPages": 13,
-    "bilingualContentPages": 12,
-    "referencesChecked": 497,
-    "originalImageHashesVerified": 16,
+    "pages": 13,
+    "local_and_external_references_checked": 683,
+    "original_images_verified": 42,
+    "errors": [],
+    "sourceAndGeneratedPagesMatch": true,
+    "deployFilesMatchRoot": true,
     "javascriptSyntax": "passed",
-    "pythonSyntax": "passed",
-    "configurationAndDraftPolicyChecks": "passed",
-    "httpPreview": "HTTP 200; served HTML matched generated source",
-    "deploymentDirectoryBoundary": "passed"
+    "configurationChecks": "passed"
   },
   "browserChecks": {
-    "passed": false,
-    "completedLayoutChecks": 0,
-    "reason": "Playwright could not start: Windows WinError 5 while creating driver communication pipes. Layout and interactions remain unverified in a browser.",
-    "report": "artifacts/browser-verification.json",
-    "rerun": "python scripts/browser_check.py --base-url http://127.0.0.1:3260/"
+    "passed": true,
+    "engine": "Microsoft Edge Chromium, headless",
+    "baseUrl": "http://127.0.0.1:3260/dist/",
+    "completedLayoutChecks": 48,
+    "widths": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "interactions": [
+      "ko: 21 actual captures, filter, lightbox, arrows, Escape, focus, language filter",
+      "en: 21 actual captures, filter, lightbox, arrows, Escape, focus, language filter",
+      "Game filter and language link retain section and query",
+      "Mobile menu: toggle, Escape, close after navigation",
+      "FAQ, pending contact, honest store availability",
+      "Configured-contact fixture: static policy identity, mail draft recipient and encoding",
+      "10 no-JavaScript documents: full content and navigation",
+      "Configured form with JavaScript off: no server submission, direct email available"
+    ],
+    "report": "artifacts/browser-verification.json"
+  },
+  "images": {
+    "uniqueCaptures": 21,
+    "appUiLanguage": "ko-KR",
+    "siteLanguages": [
+      "ko",
+      "en"
+    ],
+    "originalsUnchanged": true,
+    "source": "D:/Projects/familyGame/artifacts/marketing-current/deliverables/website"
   },
   "publication": {
-    "deployed": false,
-    "repositoryUrl": "https://github.com/K-Ternag/imageGameHome",
-    "sourceUploaded": false,
-    "uploadBlockers": ["Local .git/config and index.lock writes denied", "GitHub connector create_file returned 403 Resource not accessible by integration"],
-    "localPublishScript": "push-home.ps1",
-    "preparedFor": "GitHub Pages",
+    "deployedThisTask": false,
+    "sourceUploadedThisTask": false,
     "output": "dist",
-    "archive": "artifacts/familyGameHome-pages.zip"
+    "archive": "artifacts/familyGameHome-pages.zip",
+    "archiveContentsVerified": true,
+    "archiveSha256": "e3554c70a3c9cd3e607a4ad3ef39177bb1446f509efb3355a6a61fc17dcc805d"
   },
   "releaseInformationPending": [
-    "policyEffectiveDate",
-    "supportRetention.ko/en",
-    "supportResponseTime.ko/en",
     "policiesApproved",
     "productionApplicationId"
   ],
-  "playStoreUrl": "Not yet available, as confirmed by the user. No install URL was invented.",
-  "confirmedOperator": "K-Terang",
-  "confirmedSupportEmail": "greatryuhg@gmail.com",
-  "referenceIdentityCheck": "Both the local and public foutFoldHome/dayInFourHome site-config.js had blank developerName and supportEmail.",
-  "englishImageDisclosure": "User-supplied English promotional adaptations are used; they are not represented as running English-app screenshots."
+  "releaseGate": "Correctly refuses release until final policy review and production application ID are confirmed.",
+  "appReleaseChecksPending": [
+    "Final child-directed ad configuration and consent behavior",
+    "Published Google Play URL",
+    "Actual final AAB verification"
+  ],
+  "supportRetention": "30 days after resolution, adapted from the reference project; manual operator deletion, not automation",
+  "reviewedAppVersion": "0.9.0"
 }

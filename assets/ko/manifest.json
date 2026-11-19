@@ -3,48 +3,168 @@
     "file": "01-home.png",
     "width": 1080,
     "height": 2400,
-    "sha256": "99c664c9e6633c02ea5f06c0d303df660739ff822b5502c792f8fc257b35dcb6"
+    "sha256": "7129f5aac0c2904cd0631e6755682c7e4006b9b2e0cbcd14e807de493ced4e82",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
   },
   {
     "file": "02-games.png",
     "width": 1080,
     "height": 2400,
-    "sha256": "8a003c77c1f85632caa872e424839668c08d3195acc5f2ef7e29030ff8166d06"
+    "sha256": "06c66de78b20d20430a63ccfc4be5853d51f7bbfe6a11497e2a0ba03a73152ee",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
   },
   {
     "file": "03-photo-puzzle.png",
     "width": 1080,
     "height": 2400,
-    "sha256": "09e957ac4ede61d35557371cc755855a76b8ec31b758c8fdbd93bfb29f5ca399"
+    "sha256": "621016582e7938d309cdd98ebec4912530ec7b32aaed01c65c9378b7c7611087",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
   },
   {
     "file": "04-memory-photo.png",
     "width": 1080,
     "height": 2400,
-    "sha256": "aae639562005b5ae6fd913cf99533943290c738a2eaef65dac2b8f41c1698a7e"
+    "sha256": "f738fe6b83e962925732287e662449aa8d0374f79ad3519b943443eb8370ce8c",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
   },
   {
     "file": "05-memory-choices.png",
     "width": 1080,
     "height": 2400,
-    "sha256": "aa4b62fcde2768d5ad049fb8b08ddec76181a73d2c9e1ce256a11d1c0a3516be"
+    "sha256": "67e523c8f80d66ca23871f64a2516d1bddbd33c72f47b99647223421fad8d316",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
   },
   {
     "file": "06-photo-complete.png",
     "width": 1080,
     "height": 2400,
-    "sha256": "a38a930c79cec8487c41d16a09f710f83008c8172393ce77b5ccacfc31dc7243"
+    "sha256": "1d6609820bd4618c4f910750c573037682539a05405fdb51a756a6a9240329d4",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
   },
   {
     "file": "07-together-setup.png",
     "width": 1080,
     "height": 2400,
-    "sha256": "4fd11e4b9d122485f2f4b9f4c1050e36b288d11b9cba54d34ce56253e86fb0cf"
+    "sha256": "3e637a9824497bfea9ef37ee1b3962a07308ed0dcaff10460142c50c3e168761",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
   },
   {
     "file": "08-together-result.png",
     "width": 1080,
     "height": 2400,
-    "sha256": "d7b11c5d6db47fa1ebe81b6532b2f0121a4534bfe8956c8ed1888c34c1c962b3"
+    "sha256": "a9a73a9822eb1589fd73a5e52bc73dd33907c618c28b22e1ba37c08c2ebc0d1f",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "09-card-match.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "3a9aaa4d1bb00988c0e9c566b93fd6914ea86e30e584de4aa975f2124d61bb4b",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "10-photo-zoom.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "5e413e11317539798d06f3fa40a2d7e6d0d88b719614f612cf67e31cebc230f9",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "11-photo-rotation.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "6981ad5c45f275a68cbd03e429abf5bb17699394202ce21da7a3bb16ab4f2048",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "12-result.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "68f90cbec7a3a6d8218fdcbd26223ee1f745ed7d5d5e561f67e82dc971b5cc0e",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "13-packs.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "68879f0253eb3d661679ee7ff2ba557b2eb080e56943ad02cc35c329f41b634b",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "14-pack-create.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "67376c0541bbcd78de87f99de9d76f8018a358caa90bd224a2e2205b5f0df7d8",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "15-pack-detail.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "1c3760e55579d89f4549fa49e33a6bb9201dcf8782f060798b8384240bd0bd14",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "16-sequence-memory.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "4f5735a956712776e428e92324c980188187996c7fbe1a90a037a9164113c16b",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "17-levels.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "42bcb2ef8b2182891659a51f54eab893a2dae6fcbc0cc5a09efef3a03767d518",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "18-settings.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "fd59f7477b209a0b2e853a3883e68180ba4bd3014e28008b9746e6a4e2f93c8b",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "19-photo-search.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "ee148f83c90c9c3dd526c3ec6950eae5f69d4878496a9131e68a24086aaf8c0b",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "20-missing-photo.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "9c708697987e733b32314586645d0be94789e2ede0fcff464a796a740020b5bd",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
+  },
+  {
+    "file": "21-together-ready.png",
+    "width": 1080,
+    "height": 2400,
+    "sha256": "0c3c28e57a66121d2cabea01dc17fc739453a89961c2d7dce6b8fd08f36b7be2",
+    "app_ui_language": "ko-KR",
+    "source": "current actual app capture"
   }
 ]
