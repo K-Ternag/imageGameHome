@@ -45,24 +45,22 @@ python -m venv .venv
 
 이미지 가져오기는 패키지의 모든 SHA-256을 확인한 후 복사합니다. 제공된 기존 8장의 WebP는 그대로 유지하고 추가 13장만 480/800px WebP를 생성합니다. 다른 패키지 위치는 `--source`로 전달합니다. 생성 후 사이트 자체는 원본 앱 프로젝트 없이 동작합니다.
 
-## 운영 정보와 공개 전 확인
+## 운영 정보와 정책 검토
 
-운영자 **K-Terang**, 이메일 **greatryuhg@gmail.com**, 사이트 기준 주소 **https://k-ternag.github.io/imageGameHome/** 를 유지합니다. 공개 Google Play URL은 확인되지 않아 임의 설치 링크를 만들지 않았습니다.
+운영자 **K-Terang**, 이메일 **greatryuhg@gmail.com**, 사이트 기준 주소 **https://k-ternag.github.io/imageGameHome/** 를 사용합니다. 앱 ID는 `com.photogames.app`입니다. 한국어·영어 홈과 고객지원에서 설치 페이지를 열 수 있습니다. [리멤픽 Google Play 페이지](https://play.google.com/store/apps/details?id=com.photogames.app)
 
 문의 보관은 참고 프로젝트와 동일하게 **처리 완료 후 30일**, 메일함·휴지통 및 별도 첨부 사본 삭제로 작성했습니다. 답변은 지체 없이 처리하고 추가 확인 시 사유·예상 일정을 안내하는 기준입니다. 이는 운영자가 실제로 실행할 절차이며 자동 삭제나 자동 회신을 구현한 것은 아닙니다. 문서 적용 예정일은 `2026-11-20`입니다.
 
-`policiesApproved`는 **false**를 유지합니다. 문서는 작성되어 있지만 출시 앱·운영 절차의 최종 확인 완료로 표시하지 않습니다. 다음 사항을 확정한 뒤 설정을 갱신하세요.
+`policiesApproved`는 정책 최종 검토를 마친 뒤 `true`로 설정합니다.
 
-- 최종 배포 패키지명 `productionApplicationId`: 앱 소스의 기본값은 `com.photogames.app`이지만 출시 설정으로 변경할 수 있어 확정값을 넣지 않았습니다.
 - 아동용 광고 설정: `InterstitialController.kt`는 `AD_AUDIENCE == "children"`일 때 CHILD 처리를 적용합니다. Gradle 기본값은 `unconfirmed`이고 출시 설정에서 `adults`도 허용하므로, README의 가족용 설명만으로 최종 AAB에 CHILD가 적용됐다고 단정하지 않았습니다. 최종 대상 연령·동의·광고 설정을 확인한 뒤 정책의 아동 항목도 맞춰 확정하세요.
 - 정책 시행일, 실제 문의 보관·삭제·회신 절차, 최종 앱의 SDK와 권한을 검토하고 `policiesApproved`를 true로 설정하세요.
-- 실제 공개된 Play URL이 생기면 `playStoreUrl`을 입력하세요. 앱의 개인정보처리방침 링크도 공개된 기존 `privacy.html` 주소로 연결해야 합니다.
 
 ```powershell
 python build_site.py --release
 ```
 
-현재는 `policiesApproved`, `productionApplicationId`가 미확정이므로 이 **출시 확인 명령은 실패하는 것이 정상**입니다. 일반 생성·배포용 패키지는 검토본 표시를 유지한 채 만들 수 있습니다.
+`--release` 검사는 정책 승인까지 요구합니다. 일반 생성·배포는 정책 검토 중에도 가능합니다.
 
 광고 판매자 ID는 이 앱의 운영 계정을 확인하지 못해 참고 앱의 `app-ads.txt`를 복사하지 않았습니다. 계정 확정 후 스토어에 등록한 개발자 웹사이트의 도메인 루트에 별도로 제공해야 합니다.
 
@@ -85,7 +83,7 @@ python scripts/verify_site.py dist
 
 설치된 Edge를 이용하며, Playwright Chromium을 설치한 환경에서는 `--channel msedge`를 생략합니다. 한국어·영어 12개 페이지를 320/390/768/1440px에서 검사하고 이미지 로드, 필터·확대·방향키·Escape·포커스 복귀·메뉴·언어 전환·FAQ·메일 초안 및 JavaScript 비활성화 동작을 확인합니다. 메일 검사는 발송 없이 초안 URL만 확인합니다. 보고서·스크린샷은 `artifacts/`, 최종 요약은 `verification.json`입니다.
 
-공개 파일은 `dist/`, 압축본은 `artifacts/familyGameHome-pages.zip`입니다. 루트 소스·설정·가상환경·검증 캡처를 배포하지 않습니다. 이번 작업은 로컬 갱신이며 원격 push나 공개 배포를 수행하지 않았습니다.
+공개 파일은 `dist/`, 압축본은 `artifacts/familyGameHome-pages.zip`입니다. 루트 소스·설정·가상환경·검증 캡처를 배포하지 않습니다.
 
 기존 `.github/workflows/pages.yml`은 `main` push 또는 수동 실행 시 실제 Pages 주소로 생성·검증하고 `dist/`를 배포합니다. 대상 저장소는 https://github.com/K-Ternag/imageGameHome 입니다. Settings → Pages → Source에서 GitHub Actions를 선택합니다. 기존 `push-home.ps1`은 별도로 업로드할 때 사용할 수 있습니다.
 

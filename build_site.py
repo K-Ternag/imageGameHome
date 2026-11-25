@@ -175,11 +175,11 @@ class Site:
         pending=missing_policy_fields(self.config)
         labels={'developerName':t('운영자명','operator name'),'supportEmail':t('지원 이메일','support email'),'policyEffectiveDate':t('시행일','effective date'),'supportRetention.ko':t('문의 보유·삭제 정책(한국어)','support retention and deletion (Korean)'),'supportRetention.en':t('문의 보유·삭제 정책(영어)','support retention and deletion (English)'),'supportResponseTime.ko':t('요청 처리 기한(한국어)','response times (Korean)'),'supportResponseTime.en':t('요청 처리 기한(영어)','response times (English)'),'policiesApproved':t('정책 최종 검토','final policy review')}
         pending_text=', '.join(labels[key] for key in pending)
-        banner='' if not pending else f'<div class="policy-notice"><strong>{t("출시 전 안내 · 정책 검토본", "Pre-release information · Draft policy")}</strong><p>{t("확인 중인 항목: ", "Still to be finalized: ")}{pending_text}. {t("확정 후 정식 정책을 이 페이지에 안내합니다.", "The final policy will be published here once these details are confirmed.")}</p></div>'
+        banner='' if not pending else f'<div class="policy-notice"><strong>{t("정책 검토본", "Draft policy")}</strong><p>{t("확인 중인 항목: ", "Still to be finalized: ")}{pending_text}. {t("확정 후 정식 정책을 이 페이지에 안내합니다.", "The final policy will be published here once these details are confirmed.")}</p></div>'
         toc=''.join(f'<a href="#{key}">{heading}</a>' for key,heading,body in source)
         sections=''.join(f'<section id="{key}"><h2>{heading}</h2>{body.format(**values)}</section>' for key,heading,body in source)
         package=f'<div><dt>{t("앱 식별자", "App identifier")}</dt><dd>{escape(self.config["productionApplicationId"])}</dd></div>' if self.config['productionApplicationId'] else ''
-        identity=f'<dl class="policy-meta"><div><dt>{t("대상 앱", "App")}</dt><dd>리멤픽 / RememPic</dd></div><div><dt>{t("운영자", "Operator")}</dt><dd>{values["developer"]}</dd></div><div><dt>{t("문의", "Contact")}</dt><dd>{self.contact()}</dd></div><div><dt>{t("시행일", "Effective date")}</dt><dd>{escape(self.config["policyEffectiveDate"] or t("정식 출시 전 확정 예정", "To be confirmed before release"))}</dd></div>{package}</dl>'
+        identity=f'<dl class="policy-meta"><div><dt>{t("대상 앱", "App")}</dt><dd>리멤픽 / RememPic</dd></div><div><dt>{t("운영자", "Operator")}</dt><dd>{values["developer"]}</dd></div><div><dt>{t("문의", "Contact")}</dt><dd>{self.contact()}</dd></div><div><dt>{t("시행일", "Effective date")}</dt><dd>{escape(self.config["policyEffectiveDate"] or t("확정 예정", "To be confirmed"))}</dd></div>{package}</dl>'
         return f'<div class="wrap legal-layout"><aside class="legal-nav"><a class="breadcrumb" href="{self.f("index")}">← {t("홈으로", "Back home")}</a><span class="eyebrow">{t("이 페이지에서", "ON THIS PAGE")}</span><nav aria-label="{t("문서 목차", "On this page")}">{toc}</nav><button type="button" class="print-button" data-print hidden>{t("문서 인쇄", "Print document")}</button></aside><article class="legal-document"><span class="eyebrow">{dict(privacy="YOUR PHOTOS, YOUR PRIVACY",terms="TERMS OF USE").get(page,"YOU’RE IN CONTROL")}</span><h1>{TITLES[page][self.i]}</h1>{banner}{identity}{sections}<div class="legal-end">{t("관련 안내", "Related pages")} · <a href="{self.f("privacy")}">{t("개인정보처리방침", "Privacy policy")}</a> · <a href="{self.f("delete-account")}">{t("데이터 삭제", "Data deletion")}</a> · <a href="{self.f("support")}">{t("고객지원", "Support")}</a></div></article></div>'
 
     def render(self,page):
@@ -236,7 +236,7 @@ def main():
         (out/'sitemap.xml').unlink(missing_ok=True)
     print(f'Generated 12 bilingual pages + 404 in {out}')
     if missing:
-        print('Policy remains a clearly marked pre-release draft: '+', '.join(missing))
+        print('Policy draft pending: '+', '.join(missing))
 
 
 if __name__=='__main__':

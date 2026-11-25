@@ -2,8 +2,8 @@
   "developerName": "K-Terang",
   "supportEmail": "greatryuhg@gmail.com",
   "siteUrl": "https://k-ternag.github.io/imageGameHome/",
-  "playStoreUrl": "",
-  "productionApplicationId": "",
+  "playStoreUrl": "https://play.google.com/store/apps/details?id=com.photogames.app",
+  "productionApplicationId": "com.photogames.app",
   "policyEffectiveDate": "2026-11-20",
   "policiesApproved": false,
   "supportRetention": {

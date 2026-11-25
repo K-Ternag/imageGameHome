@@ -23,7 +23,7 @@ class FormButton(HTMLParser):
 config=json.loads((ROOT/'site-config.json').read_text(encoding='utf-8'))
 validate_config(config)
 fixture=dict(config,developerName='Operator <&>',supportEmail='help@example.org',
-             policyEffectiveDate='2026-11-14',policiesApproved=True,
+             policyEffectiveDate='2026-11-14',policiesApproved=True,playStoreUrl='',
              supportRetention={'ko':'문의 완료 후 30일','en':'30 days after resolution'},
              supportResponseTime={'ko':'7일 이내','en':'Within 7 days'})
 assert not missing_policy_fields(fixture)
@@ -38,10 +38,15 @@ for lang in ['ko','en']:
     assert fixture['supportRetention'][lang] in policy
     assert all('disabled' in attrs for attrs in FormButton(support).submit_buttons)
     assert 'class="store-link"' not in support
+    if config['playStoreUrl']:
+        live_site=Site(lang,config)
+        store_link=f'class="button primary store-link" href="{config["playStoreUrl"]}"'
+        assert live_site.render('index').count(store_link)==2
+        assert live_site.render('support').count(store_link)==1
     partial=dict(fixture,supportRetention={'ko':'30일','en':''})
     assert missing_policy_fields(partial)==['supportRetention.en']
     assert 'class="policy-notice"' in Site(lang,partial).render('privacy')
-    checks.append(f'{lang}: static identity, HTML escaping, contact, retention, draft readiness, no-JS form protection')
+    checks.append(f'{lang}: static identity, HTML escaping, contact, retention, draft readiness, no-JS form protection, configured and pending store links')
 for field,value in [('supportEmail','user@example.org?body=leak'),('supportEmail','user@example.org\nBcc: other@example.org'),('playStoreUrl','javascript:alert(1)'),('siteUrl','http://example.org/')]:
     invalid=dict(config,**{field:value})
     try:
